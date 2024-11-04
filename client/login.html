@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Bobers</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Login Section -->
+  <section class="login-section">
+    <h2>INTERESTED?</h2>
+    <h1>LOGIN</h1>
+
+    <!-- Camera Image -->
+    <img src="assets/flippedCam.png" id="cam" alt="Camera Image" />
+
+    <form class="login-form" id="loginForm">
+      <label for="email">Your email</label>
+      <input type="email" id="email" class="input-field" placeholder="Your email" required />
+
+      <label for="password">Your password</label>
+      <input type="password" id="password" class="input-field" placeholder="Your password" required />
+
+      <button type="submit" class="login-button">Login</button>
+      <p id="errorMessage" style="color: red; display: none"></p>
+    </form>
+  </section>
+
+  <div id="navbar"></div>
+
+  <script src="navbar.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      // Check if user is already logged in
+      const token = localStorage.getItem("token");
+      if (token) {
+        window.location.href = "/";
+        return;
+      }
+
+      await loadNavbar();
+
+      // Login form handling
+      const loginForm = document.getElementById("loginForm");
+      const errorMessage = document.getElementById("errorMessage");
+
+      loginForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          const response = await fetch("/api/users/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          });
+
+          if (response.ok) {
+            const userData = await response.json();
+
+            // Store token and user data
+            localStorage.setItem("token", userData.access_token);
+            delete userData.access_token; // Remove token from user data
+            localStorage.setItem("user", JSON.stringify(userData));
+
+            // Redirect to home page
+            window.location.href = "/";
+          } else {
+            const error = await response.json();
+            errorMessage.textContent =
+              error.detail || "Login failed. Please try again.";
+            errorMessage.style.display = "block";
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          errorMessage.textContent = "Network error. Please try again later.";
+          errorMessage.style.display = "block";
+        }
+      });
+
+      // Camera animation code
+      const cam = document.getElementById("cam");
+      const inputFields = document.querySelectorAll(".input-field");
+      const passwordField = document.getElementById("password");
+
+      inputFields.forEach((input) => {
+        input.addEventListener("focus", () => {
+          cam.style.display = "block";
+        });
+
+        input.addEventListener("blur", () => {
+          cam.style.display = "none";
+        });
+
+        input.addEventListener("input", () => {
+          const maxChars = 37;
+          const maxAngle = -45;
+          const currentLength = input.value.length;
+          const angle = Math.max(
+            (currentLength / maxChars) * maxAngle,
+            maxAngle
+          );
+          cam.style.transform = `rotate(${angle}deg)`;
+        });
+      });
+
+      // Change camera image when typing in the password field
+      passwordField.addEventListener("input", () => {
+        cam.src = "assets/cameraWithLed.png";
+      });
+
+      // Restore original camera image when password field is blurred
+      passwordField.addEventListener("blur", () => {
+        cam.src = "assets/flippedCam.png";
+      });
+    });
+
+    // Add utility functions for token handling
+    function getAuthToken() {
+      return localStorage.getItem("token");
+    }
+
+    function isLoggedIn() {
+      return !!getAuthToken();
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/login.html";
+    }
+  </script>
+</body>
+
+</html>

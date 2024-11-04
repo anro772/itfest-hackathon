@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Bobers</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline styles to improve spacing and layout */
+        .intro,
+        .company-values,
+        .company-overview {
+            padding: 30px 20px;
+            /* Reduced padding for a tighter layout */
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 40px 20px;
+            font-size: 0.9em;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-left {
+            max-width: 300px;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+
+        .intro h1 {
+            font-size: 1.8em;
+            /* Slightly smaller font size */
+            color: #333;
+            margin-bottom: 10px;
+            /* Reduced margin for tighter spacing */
+        }
+
+        .intro p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            /* Reduced margin between paragraphs */
+            line-height: 1.5;
+        }
+
+        .company-values h2,
+        .company-overview h2 {
+            font-size: 1.6em;
+            /* Slightly smaller font size */
+            color: #333;
+            margin-bottom: 8px;
+            /* Reduced margin for a tighter layout */
+        }
+
+        .company-values p,
+        .company-overview p {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.4;
+            /* Reduced line height for compact text */
+            margin-bottom: 15px;
+            /* Reduced space between paragraphs */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar container -->
+    <div id="navbar"></div>
+
+    <section class="intro">
+        <h1>About <span class="highlight">Bobers</span></h1>
+        <p>At Bobers, we’re dedicated to creating positive change in communities by empowering individuals to report and
+            resolve local issues together. Our goal is to make cities cleaner, safer, and more connected by engaging
+            citizens in a trusted reporting system.</p>
+    </section>
+
+    <section class="company-values">
+        <h2>Our Mission</h2>
+        <p>We believe that every individual can make a difference. By providing a platform for easy and reliable problem
+            reporting, we enable communities to collaborate in addressing everyday challenges, from traffic congestion
+            to neighborhood safety.</p>
+    </section>
+
+    <section class="company-overview">
+        <h2>Our Approach</h2>
+        <p>Using innovative technology, Bobers facilitates transparent communication between citizens and local
+            authorities. We prioritize trust and engagement, encouraging users to actively participate through a
+            credibility scoring system that rewards accurate reporting.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="assets/WhatsApp_Image_2024-11-02_at_10.30.54-removebg-preview (1).png"
+                        alt="Bobers Logo" />
+                    <p>
+                        Join our newsletter to stay up to date on features and releases.
+                    </p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required />
+                    <button type="submit">Join now</button>
+                </form>
+                <p class="newsletter-agreement">
+                    By subscribing you agree to our <a href="#">Privacy Policy</a> and
+                    provide consent to receive updates from our company.
+                </p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Product</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Utility</h3>
+                    <ul>
+                        <li><a href="#">Licenses</a></li>
+                        <li><a href="#">Changelog</a></li>
+                        <li><a href="#">Instructions</a></li>
+                        <li><a href="#">Style Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Made by Coluto and Powered by Webflow</p>
+            <ul class="footer-bottom-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Cookies Settings</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div id="navbar"></div>
+    <script src="navbar.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            await loadNavbar();
+
+            // Check authentication for protected pages
+            const token = localStorage.getItem("token");
+            if (!token && window.location.pathname !== "/login.html") {
+                window.location.href = "/login.html";
+            }
+            let selectedLocation = null;
+            let categories = [];
+        });
+    </script>
+</body>
+
+</html>

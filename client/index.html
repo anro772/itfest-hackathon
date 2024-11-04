@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bobers</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <!-- MarkerCluster CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <!-- MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+  <!-- Custom JS -->
+</head>
+
+<body>
+  <!-- Main Section -->
+  <main>
+    <section class="intro">
+      <h1>Say bye to <span class="highlight">chaos</span>.</h1>
+      <p>See real problems in realtime.</p>
+      <button class="cta-button"
+        onclick="document.getElementById('problem-reporter').scrollIntoView({ behavior: 'smooth' });">
+        Go to the Problem Reporter →
+      </button>
+      <div class="images">
+        <img src="assets/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_(cropped).jpg"
+          alt="Image 1" />
+        <img src="assets/image1.webp" alt="Image 2" />
+        <img src="assets/ea-romania-generic-featured-image-16x9.jpg.adapt.crop16x9.1023w.jpg" alt="Image 3" />
+      </div>
+    </section>
+    <section class="partners">
+      <img src="assets/Electronic-Arts-Logo.svg.png" alt="EA Logo" />
+      <img src="assets/revolut.png" alt="Partner 2 Logo" />
+      <img src="assets/Recycle001.svg.png" alt="Revolut Logo" />
+      <img src="assets/bus.png" alt="Recycle Logo" />
+    </section>
+  </main>
+  <!-- Features Section -->
+  <section class="features" id="problem-reporter">
+    <h2>Perfect features to report your problems.</h2>
+    <div class="map-container">
+      <!-- Leaflet map placeholder -->
+      <div id="problemModal" class="modal">
+        <div class="modal-content">
+          <h2>Report a Problem</h2>
+          <form id="problemForm" class="problem-form">
+            <div class="form-group">
+              <label for="category">Problem Category:</label>
+              <select id="category" name="category" required>
+                <option value="">Select a category</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" required placeholder="Describe the problem..."></textarea>
+            </div>
+            <div class="form-group location-info">
+              <p>Location: <span id="selectedLocation"></span></p>
+            </div>
+            <div class="modal-buttons">
+              <button type="button" id="cancelProblem" class="btn-secondary">
+                Cancel
+              </button>
+              <button type="submit" class="btn-primary">Save Problem</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+  </section>
+  <!-- Results Section -->
+  <section class="results">
+    <h2>We are results-driven, and it shows. Take a look.</h2>
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="icon-placeholder">📊</div>
+        <div class="stat-number">0</div>
+        <div class="stat-label">Number of Users</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-placeholder">📝</div>
+        <div class="stat-number">0</div>
+        <div class="stat-label">Number of Problems</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-placeholder">🔧</div>
+        <div class="stat-number">0</div>
+        <div class="stat-label">Number of Fixed Problems</div>
+      </div>
+    </div>
+
+    <!-- User list container -->
+    <div id="user-list" class="user-list"></div>
+  </section>
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>
+      We believe Bobers is the best tool out there. But, listen to our happy
+      clients.
+    </h2>
+    <div class="testimonial-container">
+      <div class="satisfaction-card">
+        <div class="satisfaction-percentage">98%</div>
+        <p>User satisfaction improvement</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-text">
+          “Using this application changed the way I look at the real world.”
+        </p>
+        <div class="testimonial-author">
+          <img src="assets/6725ddb5087ec896058ae879_pexels-tima-miroshnichenko-5717546.jpg" alt="User photo"
+            class="author-photo" />
+          <div class="author-info">
+            <span class="author-name">Name Surname</span>
+            <span class="author-position">Position, Company name</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <img src="assets/WhatsApp_Image_2024-11-02_at_10.30.54-removebg-preview (1).png" alt="Bobers Logo" />
+          <p>
+            Join our newsletter to stay up to date on features and releases.
+          </p>
+        </div>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Join now</button>
+        </form>
+        <p class="newsletter-agreement">
+          By subscribing you agree to our <a href="#">Privacy Policy</a> and
+          provide consent to receive updates from our company.
+        </p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Utility</h3>
+          <ul>
+            <li><a href="#">Licenses</a></li>
+            <li><a href="#">Changelog</a></li>
+            <li><a href="#">Instructions</a></li>
+            <li><a href="#">Style Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Follow Us</h3>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Made by Coluto and Powered by Webflow</p>
+      <ul class="footer-bottom-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookies Settings</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div id="navbar"></div>
+  <!-- Navbar container -->
+
+  <!-- Load Navbar Script -->
+  <script src="navbar.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      await loadNavbar();
+
+      // Check authentication for protected pages
+      const token = localStorage.getItem("token");
+      if (!token && window.location.pathname !== "/login.html") {
+        window.location.href = "/login.html";
+      }
+      let selectedLocation = null;
+      let categories = [];
+
+      // Initialize map centered on Bucharest
+      const map = L.map("map").setView([44.4268, 26.1025], 12);
+
+      // Add OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      // Initialize marker cluster group
+      const markers = L.markerClusterGroup({
+        chunkedLoading: true,
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true,
+      });
+
+      // Function to get map bounds for API request
+      function getMapBounds() {
+        const bounds = map.getBounds();
+        return {
+          min_lat: bounds.getSouth(),
+          max_lat: bounds.getNorth(),
+          min_lng: bounds.getWest(),
+          max_lng: bounds.getEast(),
+        };
+      }
+
+      // Function to create a marker icon based on category
+      function createMarkerIcon(color) {
+        return L.divIcon({
+          html: `<div style="
+                background-color: ${color || "green"};
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 2px solid white;
+                box-shadow: 0 0 4px rgba(0,0,0,0.3);
+            "></div>`,
+          className: "custom-marker",
+          iconSize: [16, 16],
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadUsers();
+      });
+
+      // Function to fetch and load categories
+      async function loadCategories() {
+        try {
+          const response = await fetch("/api/problems/categories");
+          if (!response.ok) throw new Error("Failed to fetch categories");
+
+          categories = await response.json();
+          const categorySelect = document.getElementById("category");
+
+          // Clear existing options
+          categorySelect.innerHTML =
+            '<option value="">Select a category</option>';
+
+          categories.forEach((category) => {
+            const option = document.createElement("option");
+            option.value = category.id;
+            option.textContent = category.description;
+            categorySelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error("Error loading categories:", error);
+        }
+      }
+      window.interactWithProblem = async function (
+        problemId,
+        interactionType
+      ) {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Please login to interact with problems");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `/api/problems/${problemId}/interact`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                interaction_type: interactionType,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.detail || "Failed to process interaction");
+          }
+
+          // Close any open popups
+          map.closePopup();
+
+          // Refresh the problems after interaction
+          await loadProblems();
+        } catch (error) {
+          console.error("Error:", error);
+          alert(error.message || "Failed to interact with problem");
+        }
+      };
+
+      // Update the popup content creation in loadProblems
+      function createPopupContent(problem, userData) {
+        const isCreator = problem.created_by === userData.id;
+        const hasLiked = problem.liked_by.includes(userData.id);
+        const hasDisliked = problem.disliked_by.includes(userData.id);
+        const createdDate = new Date(problem.created_at).toLocaleDateString();
+
+        return `
+        <div class="problem-popup">
+            <h3>${problem.category_description}</h3>
+            <p class="problem-description">${problem.description}</p>
+            <div class="problem-stats">
+                <div class="interaction-buttons">
+                    <button 
+                        onclick="window.interactWithProblem('${problem.id
+          }', 'like')"
+                        class="like-button ${hasLiked ? "active" : ""}"
+                        ${isCreator || hasDisliked ? "disabled" : ""}
+                        title="${isCreator
+            ? "Cannot interact with own problem"
+            : hasDisliked
+              ? "Already disliked"
+              : "Like this problem"
+          }"
+                    >
+                        👍 <span>${problem.likes || 0}</span>
+                    </button>
+                    <button 
+                        onclick="window.interactWithProblem('${problem.id
+          }', 'dislike')"
+                        class="dislike-button ${hasDisliked ? "active" : ""}"
+                        ${isCreator || hasLiked ? "disabled" : ""}
+                        title="${isCreator
+            ? "Cannot interact with own problem"
+            : hasLiked
+              ? "Already liked"
+              : "Dislike this problem"
+          }"
+                    >
+                        👎 <span>${problem.dislikes || 0}</span>
+                    </button>
+                </div>
+                ${!isCreator
+            ? `
+                    <button 
+                        onclick="window.interactWithProblem('${problem.id
+            }', 'no_longer_exists')"
+                        class="report-button"
+                        ${problem.reported_nonexistent_by.includes(userData.id)
+              ? "disabled"
+              : ""
+            }
+                        title="${problem.reported_nonexistent_by.includes(userData.id)
+              ? "Already reported as fixed"
+              : "Report this problem as fixed"
+            }"
+                    >
+                        Report as Fixed
+                    </button>
+                `
+            : ""
+          }
+            </div>
+            <div class="problem-footer">
+                <span>Reported on: ${createdDate}</span>
+                ${!problem.is_active
+            ? '<span class="inactive-badge">Inactive</span>'
+            : ""
+          }
+            </div>
+        </div>
+    `;
+      }
+
+      // Update your loadProblems function to use userData
+      async function loadProblems() {
+        try {
+          const bounds = getMapBounds();
+          const queryParams = new URLSearchParams(bounds);
+          const userData = JSON.parse(localStorage.getItem("user") || "{}");
+
+          const response = await fetch(`/api/problems/area?${queryParams}`);
+          if (!response.ok) {
+            throw new Error("Failed to fetch problems");
+          }
+
+          const problems = await response.json();
+          const fixedProblemCount = problems.filter(
+            (problem) => !problem.is_active
+          ).length;
+
+          // Clear existing markers
+          markers.clearLayers();
+
+          // Add markers with the updated popup content
+          problems.forEach((problem) => {
+            const marker = L.marker([problem.latitude, problem.longitude], {
+              icon: createMarkerIcon(problem.color),
+            });
+
+            marker.bindPopup(createPopupContent(problem, userData));
+            markers.addLayer(marker);
+          });
+
+          map.addLayer(markers);
+          updateStatistics(problems.length, fixedProblemCount);
+        } catch (error) {
+          console.error("Error loading problems:", error);
+        }
+      }
+      function updateStatistics(problemCount, fixedProblemCount) {
+        const statsContainers = document.querySelectorAll(".stat-number");
+        console.log(fixedProblemCount);
+        if (statsContainers.length >= 3) {
+          statsContainers[1].textContent = problemCount; // Total number of problems
+          statsContainers[2].textContent = fixedProblemCount; // Number of fixed problems
+        }
+      }
+
+      // Function to load and update the user count only
+      async function loadUsers() {
+        try {
+          const response = await fetch(`/api/users/all`);
+          if (!response.ok) {
+            throw new Error("Failed to fetch users");
+          }
+
+          const users = await response.json();
+
+          // Update user statistics with the total number of users
+          updateUserStatistics(users.length);
+        } catch (error) {
+          console.error("Error loading users:", error);
+        }
+      }
+
+      // Function to update the user count in the statistics UI
+      function updateUserStatistics(userCount) {
+        const statsContainers = document.querySelectorAll(".stat-number");
+        if (statsContainers.length >= 1) {
+          statsContainers[0].textContent = userCount; // Update the first container for users
+        }
+      }
+
+      // Modal handling
+      const modal = document.getElementById("problemModal");
+      const form = document.getElementById("problemForm");
+      const cancelBtn = document.getElementById("cancelProblem");
+      const locationSpan = document.getElementById("selectedLocation");
+      loadUsers();
+      document.addEventListener("DOMContentLoaded", loadUsers);
+
+      // Handle map click
+      map.on("click", function (e) {
+        selectedLocation = e.latlng;
+        locationSpan.textContent = `${selectedLocation.lat.toFixed(
+          6
+        )}, ${selectedLocation.lng.toFixed(6)}`;
+        modal.style.display = "block";
+      });
+
+      // Handle form submission
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Please login to report a problem");
+          return;
+        }
+
+        const problemData = {
+          category_id: document.getElementById("category").value,
+          description: document.getElementById("description").value,
+          latitude: selectedLocation.lat,
+          longitude: selectedLocation.lng,
+        };
+
+        try {
+          const response = await fetch("/api/problems/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(problemData),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to create problem");
+          }
+
+          // Close modal and reset form
+          modal.style.display = "none";
+          form.reset();
+
+          // Refresh problems on the map
+          loadProblems();
+
+          // Show success message
+          alert("Problem reported successfully!");
+        } catch (error) {
+          console.error("Error creating problem:", error);
+          alert("Failed to report problem. Please try again.");
+        }
+      });
+
+      // Close modal when clicking cancel
+      cancelBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+        form.reset();
+      });
+
+      // Close modal when clicking outside
+      window.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          modal.style.display = "none";
+          form.reset();
+        }
+      });
+      loadCategories(); // Load categories first
+      loadProblems(); // Load initial problems
+      map.on("moveend", loadProblems); // Reload problems when map is moved
+    });
+  </script>
+</body>
+
+</html>
